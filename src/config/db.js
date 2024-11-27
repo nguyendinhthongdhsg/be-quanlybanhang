@@ -4,17 +4,17 @@ const mysql = require("mysql2")
 const db = mysql.createConnection({
   host: "localhost", // Địa chỉ server của database
   user: "root", // Tên người dùng
-  password: "", // Mật khẩu
+  password: "database@123", // Mật khẩu
   database: "quanlybanhang", // Tên database
 })
 
 // Kết nối đến MySQL
 db.connect((err) => {
-    if (err) {
-      console.error("Error database:", err)
-    } else {
-      console.log("Connect database success")
-    }
+  if (err) {
+    console.error("Error database:", err)
+  } else {
+    console.log("Connect database success")
+  }
 })
 
 module.exports = db
