@@ -4,6 +4,8 @@ const LoaiSanPhamRoute = require("./LoaiSanPhamRoute");
 const DonHangRoute = require("./DonHangRoute");
 const ChiTietDonHangRoute = require("./ChiTietDonHangRoute");
 const DanhGiaRoute = require("./DanhGiaRoute");
+const BanRoute = require("./BanRoute");
+const ChiTietDatBanRoute = require("./ChiTietDatBanRoute");
 
 function routes(app) {
     app.use("/taikhoan", TaiKhoanRoute);
@@ -12,6 +14,8 @@ function routes(app) {
     app.use("/donhang", DonHangRoute);
     app.use("/chitietdonhang", ChiTietDonHangRoute);
     app.use("/danhgia", DanhGiaRoute);
+    app.use("/ban", BanRoute);
+    app.use("/chitietdatban", ChiTietDatBanRoute);
 }
 
 module.exports = routes
