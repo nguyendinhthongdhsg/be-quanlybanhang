@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: localhost
--- Thời gian đã tạo: Th10 07, 2024 lúc 06:22 PM
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th10 28, 2024 lúc 07:56 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
--- Phiên bản PHP: 8.0.30
+-- Phiên bản PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,49 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `quanlybanhang`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `ban`
+--
+
+CREATE TABLE `ban` (
+  `id` int(11) NOT NULL,
+  `vitri` int(11) NOT NULL,
+  `soluong` int(11) NOT NULL,
+  `trangthai` varchar(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `ban`
+--
+
+INSERT INTO `ban` (`id`, `vitri`, `soluong`, `trangthai`) VALUES
+(1, 1, 4, '0'),
+(2, 2, 4, '0'),
+(3, 3, 4, '0'),
+(4, 4, 4, '0'),
+(5, 5, 8, '0'),
+(6, 6, 8, '0'),
+(7, 7, 8, '0'),
+(8, 8, 8, '0'),
+(9, 9, 2, '0'),
+(10, 10, 2, '0'),
+(11, 11, 2, '0'),
+(12, 12, 2, '0');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `chitietdatban`
+--
+
+CREATE TABLE `chitietdatban` (
+  `idmanguoidung` int(11) NOT NULL,
+  `idban` int(11) NOT NULL,
+  `ngaygio` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -216,6 +259,19 @@ INSERT INTO `taikhoan` (`id`, `tendangnhap`, `tennguoidung`, `email`, `matkhau`,
 --
 
 --
+-- Chỉ mục cho bảng `ban`
+--
+ALTER TABLE `ban`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `chitietdatban`
+--
+ALTER TABLE `chitietdatban`
+  ADD KEY `nguoidat` (`idmanguoidung`),
+  ADD KEY `bandat` (`idban`);
+
+--
 -- Chỉ mục cho bảng `chitietdonhang`
 --
 ALTER TABLE `chitietdonhang`
@@ -267,6 +323,12 @@ ALTER TABLE `taikhoan`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `ban`
+--
+ALTER TABLE `ban`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
@@ -299,6 +361,13 @@ ALTER TABLE `taikhoan`
 --
 -- Các ràng buộc cho các bảng đã đổ
 --
+
+--
+-- Các ràng buộc cho bảng `chitietdatban`
+--
+ALTER TABLE `chitietdatban`
+  ADD CONSTRAINT `bandat` FOREIGN KEY (`idban`) REFERENCES `ban` (`id`),
+  ADD CONSTRAINT `nguoidat` FOREIGN KEY (`idmanguoidung`) REFERENCES `taikhoan` (`id`);
 
 --
 -- Các ràng buộc cho bảng `chitietdonhang`
